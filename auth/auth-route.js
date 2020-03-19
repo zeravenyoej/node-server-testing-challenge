@@ -5,9 +5,9 @@ const bcrypt = require('bcryptjs')
 const jwt = require("jsonwebtoken")
 
 
-function generateToken(){
+function generateToken(user){
     const payload = { username: user.username }
-    const secret = process.env.JWT_SECRET;
+    const secret = process.env.JWT_SECRET
     const options = { expiresIn: '1hr' }
     return jwt.sign(payload, secret, options)
 }
@@ -54,13 +54,13 @@ route.post("/login", doesUserExist(), async (req, res, next) => {
 }
 
 )
-route.del("/", async (req, res, next) => {
-    try {
+// route.del("/", async (req, res, next) => {
+//     try {
         
-    } catch(err){
-        next(err)
-    }
-})
+//     } catch(err){
+//         next(err)
+//     }
+// })
 
 
 
