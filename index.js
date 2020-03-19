@@ -3,6 +3,7 @@ const helmet = require("helmet")
 const cookieParser = require("cookie-parser")
 const authRoutes = require('./auth/auth-route')
 const usersRoutes = require('./users/users-route')
+const contactRoutes = require('./contactInfo/contactInfo-routes')
 
 
 const server = (express())
@@ -14,6 +15,7 @@ server.use(cookieParser())
 
 server.use("/api/auth", authRoutes)
 server.use("/api/users", usersRoutes)
+server.use("/api/contacts", contactRoutes)
 
 
 server.use('/', (err, req, res, next) => {

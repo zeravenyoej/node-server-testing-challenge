@@ -51,17 +51,6 @@ route.post("/login", doesUserExist(), async (req, res, next) => {
     } catch(err){
         next(err)
     }
-}
-
-)
-// route.del("/", async (req, res, next) => {
-//     try {
-        
-//     } catch(err){
-//         next(err)
-//     }
-// })
-
-
+})
 
 module.exports = route
