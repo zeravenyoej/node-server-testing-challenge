@@ -4,7 +4,7 @@
   "description": "Node Server Testing Challenge",
   "main": "server.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test jest --verbose",
+    "test": "cross-env NODE_ENV=test JWT_SECRET=HELLO jest --verbose",
     "start": "node index.js",
     "server": "nodemon -r dotenv/config index.js"
   },

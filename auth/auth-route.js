@@ -46,8 +46,7 @@ route.post("/login", doesUserExist(), async (req, res, next) => {
             res.status(400).json({ message: "Please enter a valid password" })
         } else {
             const token = generateToken(req.user)
-            res.cookie("authToken", token)
-            res.json({ message: `Welcome ${username}` })
+            res.cookie("authToken", token).json({ message: `Welcome ${username}` })
         }
     } catch(err){
         next(err)
@@ -61,7 +60,7 @@ route.delete("/:id", restrictPath(), async (req, res, next) => {
         if (!user) {
             return res.status(400).json({message: "User enter valid user id"})
         }
-        await Users.delete(id)
+        await Users.delUser(id)
         res.json({message: "user has been deleted"})
     } catch(err){
         next(err)
