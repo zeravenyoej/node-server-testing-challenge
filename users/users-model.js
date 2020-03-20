@@ -4,7 +4,8 @@ module.exports = {
     findAll,
     findByFilter,
     findById,
-    createUser
+    createUser, 
+    delUser,
 }
 
 function findAll(){
@@ -16,9 +17,13 @@ function findByFilter(filter){
 }
 
 function findById(id) {
-    return db("users").where(id).first()
+    return db("users").where("id", id).first()
 }
 
 function createUser(payload) {
     return db("users").insert(payload)
+}
+
+function delUser(id){
+    return db("users").where("id", id).del()
 }

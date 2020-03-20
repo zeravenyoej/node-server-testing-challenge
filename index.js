@@ -23,4 +23,8 @@ server.use('/', (err, req, res, next) => {
     res.status(500).json("Something went wrong")
 })
 
-server.listen(PORT, console.log(`Server is running on port ${PORT}`))
+if(!module.parent){
+    server.listen(PORT, console.log(`Server is running on port ${PORT}`))
+}
+
+module.exports = server

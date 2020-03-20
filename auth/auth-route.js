@@ -1,6 +1,7 @@
 const route = require("express").Router()
 const Users = require('../users/users-model')
 const doesUserExist = require('../middleware/doesUserExist')
+const restrictPath = require('../middleware/restrictPath')
 const bcrypt = require('bcryptjs')
 const jwt = require("jsonwebtoken")
 
@@ -48,6 +49,20 @@ route.post("/login", doesUserExist(), async (req, res, next) => {
             res.cookie("authToken", token)
             res.json({ message: `Welcome ${username}` })
         }
+    } catch(err){
+        next(err)
+    }
+})
+
+route.delete("/:id", restrictPath(), async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const user = await Users.findById(id)
+        if (!user) {
+            return res.status(400).json({message: "User enter valid user id"})
+        }
+        await Users.delete(id)
+        res.json({message: "user has been deleted"})
     } catch(err){
         next(err)
     }
